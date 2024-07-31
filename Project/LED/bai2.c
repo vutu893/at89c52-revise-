@@ -18,40 +18,55 @@ void main()
 	while(1)
 	{
 		mode1();
-		delay_ms(500);
 		mode2();
-		delay_ms(500);
 		mode3();
-		delay_ms(500);
 		mode4();
-		delay_ms(500);
-		mode5();
-		delay_ms(500);
 	}
 }
 //mode1
 void mode1()
 {
-
+	LED_PIN = 0x00;
+	delay_ms(1000);
+	LED_PIN = 0xFF;
+	delay_ms(1000);
 }
 
 //mode2
 void mode2()
-{
-
+{	
+	
+	unsigned char i;
+	LED_PIN = 0x01;
+	for(i = 0;i < 8; i++)
+	{
+		LED_PIN &= (0x01 << i);
+		LED_PIN << 1;
+		delay_ms(1000);
+	}
 }
 //mode3
 void mode3()
 {
-
+	unsigned char i;
+	LED_PIN = 0x00;
+	delay_ms(1000);
+	for(i = 0; i< 8; i++)
+	{
+		LED_PIN |= (1 << i);
+		delay_ms(1000);
+	}
+	for(i = 0; i < 8; i++)
+	{
+		LED_PIN &= (0x80 >> i);
+		delay_ms(1000);
+	}
 }
 //mode4
 void mode4()
 {
-
-}
-//mode5
-void mode5()
-{
-
+	LED_PIN = 0x55;
+	delay_ms(1000);
+	LED_PIN = 0xAA;
+	delay_ms(1000);
 }
