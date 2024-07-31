@@ -2,10 +2,35 @@
 #include "../../Lib/delay.h"
 
 //bai1: lam nhay led don va viet ham delay ms
+
+//khai bao chan ket noi voi led
+#define LED_PIN P2
+
+//chi sang 1 den
+sbit LED_SINGLE = P3^0;
+
+void 8_Led_On_Off();
+void 1_Led_On_Off();
+
 void main()
 {
+	LED_PIN = 0x00;
+	LED_SINGLE = 0;
 	while(1)
 	{
-	
+		8_Led_On_Off();
+		1_Led_On_Off();
 	}
+}
+void 8_Led_On_Off()
+{
+	LED_PIN = !LED_PIN;
+	delay_ms(500);
+}
+
+void 1_Led_On_Off()
+{
+	//LED DAU TIEN
+	LED_SINGLE = !LED_SINGLE;
+	delay_ms(500);
 }
