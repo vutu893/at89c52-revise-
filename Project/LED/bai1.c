@@ -9,8 +9,8 @@
 //chi sang 1 den
 sbit LED_SINGLE = P3^0;
 
-void 8_Led_On_Off();
-void 1_Led_On_Off();
+void eight_Led_On_Off();
+void one_Led_On_Off();
 
 void main()
 {
@@ -18,17 +18,17 @@ void main()
 	LED_SINGLE = 0;
 	while(1)
 	{
-		8_Led_On_Off();
-		1_Led_On_Off();
+		eight_Led_On_Off();
+		one_Led_On_Off();
 	}
 }
-void 8_Led_On_Off()
+void eight_Led_On_Off()
 {
 	LED_PIN = !LED_PIN;
 	delay_ms(500);
 }
 
-void 1_Led_On_Off()
+void one_Led_On_Off()
 {
 	//LED DAU TIEN
 	LED_SINGLE = !LED_SINGLE;
