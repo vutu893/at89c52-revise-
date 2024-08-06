@@ -13,6 +13,10 @@ void main()
 	
 	while(1)
 	{
-		
+		for(i = 0; i < 10; i++)
+		{
+			7SEG_PIN = 7seg[i];
+			delay_ms(1000);
+		}
 	}
 }
