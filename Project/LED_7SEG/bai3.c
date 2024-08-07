@@ -12,7 +12,7 @@ sbit LED1 = P3^3;
 sbit LED2 = P3^4;
 
 //ma led 7seg
-unsigned char code_led[] = {0xC0, 0xF9, 0xA4, 0xB0, 0x99, 0x92, 0x82, 0x8F, 0x80, 0x90};
+unsigned char code code_led[] = {0xC0, 0xF9, 0xA4, 0xB0, 0x99, 0x92, 0x82, 0x8F, 0x80, 0x90};
 
 //cac ham den sang
 void led_Red_On();
@@ -21,58 +21,53 @@ void led_Green_On();
 
 void main()
 {	
-	unsigned char time,i;
-	unsigned char chuc, donvi;
+	unsigned int j;
+	unsigned char i,chuc, donvi;
 	
 	while(1)
 	{	
-		time = 0;
-		//ban dau den do sang
 		led_Red_On();
-		while(time < 61)
-		{		
-				chuc = time/10;
-				donvi = time%10;
-				for(i = 0; i< 500; i++)
-				{
-					LED_PIN = code_led[chuc];
-					LED1 = 1;
-					delay_ms(1);
-					LED2 = 0;
-					
-					LED_PIN = code_led[donvi];
-					LED1 = 0;
-					delay_ms(1);
-					LED2 = 1;
-				}
-				time++;
+		for(i = 0; i < 10; i++)
+		{
+			chuc = i / 10;
+			donvi = i % 10;
+			for(j = 0; j < 500; j++)
+			{
+				LED_PIN = code_led[chuc];
+				LED1 = 1;
+				delay_ms(1);
+				LED1 = 0;
+				
+				LED_PIN = code_led[donvi];
+				LED2 = 1;
+				delay_ms(1);
+				LED2 = 0;
+			}
+			
 		}
 		
 		led_Green_On();
-		time = 0;
-		while(time < 61)
+		for(i = 0; i < 10; i++)
 		{
-				chuc = time/10;
-				donvi = time%10;
-				for(i = 0; i< 500; i++)
-				{
-					LED_PIN = code_led[chuc];
-					LED1 = 1;
-					delay_ms(1);
-					LED2 = 0;
-					
-					LED_PIN = code_led[donvi];
-					LED1 = 0;
-					delay_ms(1);
-					LED2 = 1;
-				}
-				if(time > 50)
-				{
-					led_Yellow_On();
-				}
-				time++;
+			chuc = i / 10;
+			donvi = i % 10;
+			for(j = 0; j < 500; j++)
+			{
+				LED_PIN = code_led[chuc];
+				LED1 = 1;
+				delay_ms(1);
+				LED1 = 0;
+				
+				LED_PIN = code_led[donvi];
+				LED2 = 1;
+				delay_ms(1);
+				LED2 = 0;
+			}
+			if(i > 5)
+			{
+				led_Yellow_On();
+			}
 		}
-		
 	}
 }
 void led_Red_On()
